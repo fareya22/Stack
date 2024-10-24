@@ -1,1 +1,1 @@
-# Stack
+Academic project!
