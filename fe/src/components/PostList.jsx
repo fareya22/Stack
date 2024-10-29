@@ -65,33 +65,39 @@ function PostList({ token }) {
   };
 
   return (
-    <div>
-      <div className='flex justify-between m-4'>
-        <h2 className="text-xl font-bold mb-4">Create a Post</h2>
+    <div className="p-6 bg-gray-50 min-h-screen">
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-2xl font-semibold text-gray-800">Create a Post</h2>
         <button
           onClick={showingUserPosts ? fetchPosts : fetchUserPosts}
-          className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded mb-4"
+          className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-5 rounded-lg shadow transition duration-200"
         >
           {showingUserPosts ? "View Posts by Others" : "View My Posts"}
         </button>
       </div>
-      <div>
-        <button onClick={() => setIsFileUpload(!isFileUpload)} className="bg-gray-300 py-2 px-4 rounded mb-4">
-          {isFileUpload ? 'Switch to Code Snippet' : 'Switch to File Upload'}
+      
+      <div className="mb-6">
+        <button
+          onClick={() => setIsFileUpload(!isFileUpload)}
+          className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium py-2 px-4 rounded-lg shadow-sm transition duration-200"
+        >
+          {isFileUpload ? "Switch to Code Snippet" : "Switch to File Upload"}
         </button>
       </div>
+  
       <input
         type="text"
         value={title}
         onChange={e => setTitle(e.target.value)}
         placeholder="Title"
-        className="block w-full p-2 mb-2 border rounded"
+        className="block w-full p-3 mb-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-400"
       />
+      
       {isFileUpload ? (
         <input
           type="file"
           onChange={e => setFile(e.target.files[0])}
-          className="block w-full p-2 mb-2"
+          className="block w-full p-3 mb-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none"
         />
       ) : (
         <>
@@ -99,46 +105,51 @@ function PostList({ token }) {
             value={content}
             onChange={e => setContent(e.target.value)}
             placeholder="Code Snippet"
-            className="block w-full p-2 mb-2 border rounded"
+            className="block w-full p-3 mb-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-400"
+            rows="4"
           />
           <select
             value={language}
             onChange={e => setLanguage(e.target.value)}
-            className="block w-full p-2 mb-2 border rounded"
+            className="block w-full p-3 mb-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-400"
           >
             <option value="">Select Language</option>
             <option value="c">C</option>
-            <option value="html">HTML</option>
             <option value="cpp">C++</option>
+            <option value="java">Java</option>
             <option value="python">Python</option>
           </select>
         </>
       )}
+  
       <button
         onClick={handleCreatePost}
-        className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded mb-4"
+        className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-6 rounded-lg shadow transition duration-200 mb-8"
       >
         Create Post
       </button>
-
-      <h2 className="text-xl font-bold mb-4">{showingUserPosts ? "My Posts" : "Posts by Others"}</h2>
+  
+      <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+        {showingUserPosts ? "My Posts" : "Posts by Others"}
+      </h2>
+      
       {posts.length ? (
         posts.map(post => (
-          <div key={post._id} className="p-4 mb-4 bg-white rounded shadow">
-            <h3 className="text-lg font-bold">{post.title}</h3>
-            <p>{post.content}</p>
-            <p className="text-gray-600 text-sm">Posted by: {post.email}</p>
+          <div key={post._id} className="p-6 mb-6 bg-white rounded-lg shadow-lg border border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">{post.title}</h3>
+            <p className="text-gray-700 mb-2">{post.content}</p>
+            <p className="text-sm text-gray-500">Posted by: {post.email}</p>
             
             {post.isFileUpload && post.folderName ? (
-              <p className="text-gray-600 text-sm">Folder Name: {post.folderName}</p>
+              <p className="text-sm text-gray-500">Folder Name: {post.folderName}</p>
             ) : post.language ? (
-              <p className="text-gray-600 text-sm">Language: {post.language}</p>
+              <p className="text-sm text-gray-500">Language: {post.language}</p>
             ) : null}
-
+  
             {post.codeSnippetUrl && (
               <a
                 href={post.codeSnippetUrl}
-                className="text-blue-500"
+                className="text-blue-500 hover:underline mt-2 inline-block"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -148,10 +159,11 @@ function PostList({ token }) {
           </div>
         ))
       ) : (
-        <p>No posts available.</p>
+        <p className="text-gray-500">No posts available.</p>
       )}
     </div>
   );
+  
 }
 
 PostList.propTypes = {

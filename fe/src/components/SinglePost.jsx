@@ -23,14 +23,15 @@ const SinglePost = ({ token }) => {
   }
 
   return (
-    <div className="p-4 bg-white rounded shadow">
-      <h2 className="text-2xl font-bold">{post.title}</h2>
-      <p className="mt-2">{post.content}</p>
-      <p className="text-gray-600 text-sm">Posted by: {post.email}</p> {/* Author's email */}
+    <div className="p-6 bg-white rounded-lg shadow-lg border border-gray-200">
+      <h2 className="text-2xl font-semibold text-gray-800 mb-3">{post.title}</h2>
+      <p className="text-gray-700 mb-4">{post.content}</p>
+      <p className="text-sm text-gray-500 mb-4">Posted by: {post.email}</p> {/* Author's email */}
+      
       {post.codeSnippetUrl && (
         <a
           href={post.codeSnippetUrl}
-          className="text-blue-500"
+          className="text-indigo-500 font-medium hover:underline"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -39,6 +40,7 @@ const SinglePost = ({ token }) => {
       )}
     </div>
   );
+  
 };
 
 SinglePost.propTypes = {

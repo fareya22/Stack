@@ -46,38 +46,43 @@ function Auth({ setToken }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <h1 className="text-3xl font-bold mb-4 text-blue-500">Stack Overflow</h1>
-      <div className="w-full max-w-xs">
-        <input
-          type="email"
-          placeholder="Email"
-          className="block w-full p-2 mb-2 border rounded"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="block w-full p-2 mb-4 border rounded"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
-        <button
-          onClick={handleSignUp}
-          className="w-full bg-sky-500 hover:bg-blue-600 text-white py-2 rounded mb-2"
-        >
-          Sign Up
-        </button>
-        <button
-          onClick={handleSignIn}
-          className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded"
-        >
-          Sign In
-        </button>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
+        <h1 className="text-4xl font-bold text-blue-500 mb-6 text-center">
+          Stack Overflow
+        </h1>
+        <div className="w-full">
+          <input
+            type="email"
+            placeholder="Email"
+            className="block w-full p-3 mb-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-400"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            className="block w-full p-3 mb-6 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-400"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+          <button
+            onClick={handleSignUp}
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-semibold mb-4 shadow-md transition duration-200"
+          >
+            Sign Up
+          </button>
+          <button
+            onClick={handleSignIn}
+            className="w-full bg-green-500 hover:bg-green-600 text-white py-3 rounded-lg font-semibold shadow-md transition duration-200"
+          >
+            Sign In
+          </button>
+        </div>
       </div>
     </div>
   );
+  
 }
 
 Auth.propTypes = {
